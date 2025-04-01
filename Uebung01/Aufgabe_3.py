@@ -1,5 +1,4 @@
 import numpy as np
-import math
 import scipy as sp
 
 
@@ -62,16 +61,22 @@ def durchlauf(f, a, b, n):
 
     print("linkseitige Rechteckregel:")
     res = linkseitige_rechteckregel(f, a, b, n)
+    print("actual: " + str(actual))
+    print("res: " + str(res))
     print("Abweichung: " + str(np.abs(actual - res)))
     print("\n")
 
     print("rechtsseitige Rechteckregel:")
     res = rechtsseitige_rechteckregel(f, a, b, n)
+    print("actual: " + str(actual))
+    print("res: " + str(res))
     print("Abweichung: " + str(np.abs(actual - res)))
     print("\n")
 
     print("Trapezregel:")
     res = trapezregel(f, a, b, n)
+    print("actual: " + str(actual))
+    print("res: " + str(res))
     print("Abweichung: " + str(np.abs(actual - res)))
 
 
