@@ -7,7 +7,7 @@ def trapezregel(f, a, b, n):
     """
     h = (b - a) / n
     x = np.linspace(a, b, n)
-    y = np.sum(f(x))
+    y = h/2 * (f(a) + 2 * np.sum(f(x)) + f(b))
     return y
 
 def f(x):
