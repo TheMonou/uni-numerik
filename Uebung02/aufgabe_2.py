@@ -1,20 +1,29 @@
 import numpy as np
 
+def tausche(A, z1, z2, b):
+    temp_row = A[z1, :].copy()
+    A[z1, :] = A[z2, :]
+    A[z2, :] = temp_row.copy()
+
+    temp = b[z1]
+    b[z1] = b[z2]
+    b[z2] = temp
 
 def gauss(A, b):
-    A = A.astype(float)  # ensure float division
-    b = b.astype(float)
+    for k in range(A.shape[0]-2):
+        pivot = A[k,k]
+        if pivot == 0:
+            for i in range(k+1, A.shape[0]-1):
+                if (A[i ,k] != 0):
+                    tausche(A, k, i, b)
+                    break
+            else:
+                raise ValueError(f"No non-zero pivot found in column")
 
-    n = A.shape[0]  # number of rows
-    for k in range(n - 2):
-        faktor = A[k + 1, k] / A[k, k]
-        A[k + 1, :] -= faktor * A[k, :]
-        b[k+1] -= faktor * b[k]
 
-    result = np.zeros_like(b)
-    result[-1] = b[-1]/A[-1,-1]
-    for i in range(n - 2):
-        result[-i] = (b-sum(result[-i+1:-1]))/A[-1,-1]
+
+
+
     return result
 
 
