@@ -12,13 +12,18 @@ def tausche(A, z1, z2, b):
 def gauss(A, b):
     for k in range(A.shape[0]-2):
         pivot = A[k,k]
+        # Prüfen ob das Pivot-Element 0 ist und ggfs. Zeilen tauschen
         if pivot == 0:
             for i in range(k+1, A.shape[0]-1):
                 if (A[i ,k] != 0):
                     tausche(A, k, i, b)
                     break
             else:
-                raise ValueError(f"No non-zero pivot found in column")
+                raise ValueError(f"No non-zero pivot found in column {k}.")
+
+        # Eliminationsschritt
+        A[k+1, :] -= A[k+1,k]/pivot * A[k, :]
+        b[k+1] -= A[k+1,k]/pivot * b[k]
 
 
 
