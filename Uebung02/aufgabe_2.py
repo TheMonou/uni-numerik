@@ -1,6 +1,7 @@
 import numpy as np
 
 def tausche(A, z1, z2, b):
+    print(f"Tausche Zeile {z1} mit Zeile {z2}")
     temp_row = A[z1, :].copy()
     A[z1, :] = A[z2, :]
     A[z2, :] = temp_row.copy()
@@ -10,7 +11,14 @@ def tausche(A, z1, z2, b):
     b[z2] = temp
 
 def gauss(A, b):
+    A = A.astype(float)  # Ensure A is of type float
+    b = b.astype(float)  # Ensure b is of type float
+    print (f"Startmatrix:\n{A}\n")
+
+    print(f"dimension: {A.shape[0]} x {A.shape[1]}")
+
     for k in range(A.shape[0]-2):
+        print (f"Step {k}:")
         pivot = A[k,k]
         # Prüfen ob das Pivot-Element 0 ist und ggfs. Zeilen tauschen
         if pivot == 0:
@@ -22,14 +30,20 @@ def gauss(A, b):
                 raise ValueError(f"No non-zero pivot found in column {k}.")
 
         # Eliminationsschritt
-        A[k+1, :] -= A[k+1,k]/pivot * A[k, :]
-        b[k+1] -= A[k+1,k]/pivot * b[k]
+        print(f"Elimination:")
+        faktoren = A[k + 1:, k] / pivot
+        A[k+1:, :] -= faktoren[:, np.newaxis] * A[k, :]
+        b[k+1:] -= faktoren * b[k]
+        print(f"Matrix nach Elimination:\n{A}\n")
+        print(f"Vektor nach Elimination:\n{b}\n")
 
+    # Rücksubstitution
+    print("Rücksubstitution:")
+    b[-1] = b[-1] / A[-1,-1]
+    for i in range(2, A.shape[0]):
+        b[-i] = (b[-i] - sum)
 
-
-
-
-    return result
+    return A
 
 
 def main():
