@@ -22,7 +22,7 @@ def gauss(A, b):
         pivot = A[k,k]
         # Prüfen ob das Pivot-Element 0 ist und ggfs. Zeilen tauschen
         if pivot == 0:
-            for i in range(k+1, A.shape[0]-1):
+            for i in range(k+1, A.shape[0]):
                 if (A[i ,k] != 0):
                     tausche(A, k, i, b)
                     break
