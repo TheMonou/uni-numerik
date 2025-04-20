@@ -8,7 +8,7 @@ def tausche(A, z1, z2, p):
     return p
 
 def zerlegung(A):
-    p = np.zeros
+    p = np.zeros(A.shape[0], dtype=float)
     for i in range(A.shape[0]):
         pivot = A[i, i]
         # Prüfung auf 0-Wert an Pivot-Stelle
