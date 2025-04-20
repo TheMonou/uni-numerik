@@ -25,8 +25,18 @@ def zerlegung(A):
 
     pass
 
+def rueckwaerts(lu, b):
+    # Rücksubstitution
+    b[-1] = b[-1] / lu[-1, -1]
+    for i in range(2, lu.shape[0] + 1):
+        b[-i] = (b[-i] - np.dot(lu[-i, -i + 1:], b[-i + 1:])) / lu[-i, -i]
+
+
 def permutation(p,x):
-    pass
+    for i in range(len(p)):
+        temp = x[i]
+        x[i] = x[p[i]]
+        x[p[i]] = temp
 
 def main():
     pass
