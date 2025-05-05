@@ -11,15 +11,13 @@ def zerlegung(A):
     p = np.zeros(A.shape[0], dtype=float)
     for i in range(A.shape[0]):
         pivot = A[i, i]
-        # Prüfung auf 0-Wert an Pivot-Stelle
-        if pivot == 0:
-            for j in range(A.shape[0]):
-                if A[j, i] != 0:
-                    tausche(A, j, i, p)
-                    break
-
-        #Zerlegung
-
+        # Spalten-Pivotisierung
+        spalten_pivot = i
+        for j in range(A.shape[0]):
+            if abs(A[j, i])>abs(pivot):
+                spalten_pivot = j
+                break
+        tausche(A, i, spalten_pivot, p)
 
 
     pass
