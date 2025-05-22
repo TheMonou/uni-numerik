@@ -12,20 +12,21 @@ def max_nebendiagonal_element(A):
     abs_matrix = np.abs(m)
     flat_index = np.argmax(abs_matrix)
     indices = np.unravel_index(flat_index, m.shape)
-
+    print(f" Max Nebendiagonalelement: {A[indices]}")
     return indices
 
 def quadratsumme_nebendiagonal_elemente(A):
     m = A.copy()
     np.fill_diagonal(m, 0)
-    print(m**2)
-    print(np.sum(m ** 2))
+    print(f"Nebendiagonalelemente: \n {m**2}")
+    print(f"Quadratsumme Nebendiagonalelemente: {np.sum(m ** 2)}")
     return np.sum(m ** 2)
 
 
 def jacobi_eigenvalues(A):
     N = quadratsumme_nebendiagonal_elemente(A)
     while N > 1e-3:
+        print(f" Matrix A: \n {A}")
         indices = max_nebendiagonal_element(A)
         a = A[indices]
         alpha = (A[indices[1], indices[1]] - A[indices[0], indices[0]]) / 2 * a
