@@ -13,13 +13,16 @@ def zerlegung(A):
     p = np.zeros(A.shape[0], dtype=float)
     for i in range(A.shape[0]):
         print(f" i: {i}")
+        print(f" A nach Schritt {i}: \n {A}")
         pivot = A[i, i]
         # Prüfung auf 0-Wert an Pivot-Stelle
         if pivot == 0:
-            for j in range(A.shape[0]):
-                if A[j, i] != 0:
+            for j in range(i + 1, A.shape[0]):
+                if (A[j, i] != 0):
                     tausche(A, i, j, p)
                     break
+            else:
+                raise ValueError(f"No non-zero pivot found in column {i}.")
 
         pivot = A[i, i]
         #Zerlegung
