@@ -31,10 +31,8 @@ def jacobi_eigenvalues(A):
         s = signum(alpha) / (2 * c * np.sqrt(1 + alpha**2))
 
         # QA
-
         a_i = A[i, :].copy()
         a_j = A[j, :].copy()
-
         A[i, :] = c * a_i + s * a_j
         A[j, :] = c * a_j + -s * a_i
 
@@ -44,6 +42,7 @@ def jacobi_eigenvalues(A):
         a__j = A[:, j].copy()
         A[:, i] = c * a__i + s * a__j
         A[:, j] = c * a__j + -s * a__i
+
         N = quadratsumme_nebendiagonal_elemente(A)
 
     return np.diag(A)
