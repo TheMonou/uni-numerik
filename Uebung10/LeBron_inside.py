@@ -1,10 +1,13 @@
-import numpy as np
-import matplotlib.pyplot as plt
+from nba_api.stats.endpoints import leaguedashplayerstats
 import pandas as pd
-from matplotlib.pyplot import figure
+import matplotlib.pyplot as plt
 
+# Query player stats for the 2023-24 regular season
+stats = leaguedashplayerstats.LeagueDashPlayerStats(
+    season='2023-24',
+    season_type_all_star='Regular Season'
+)
 
-three_pointers = pd.read_excel("3pt.xlsx")
 three_point_insider = {
     'Giannis Antetokounmpo': 'red',
     'Domantas Sabonis': 'red',
@@ -26,6 +29,7 @@ three_point_shooters = {
     'Simone Fontecchio' : 'green'
 }
 
+
 colors = [three_point_shooters.get(player, 'white') for player in three_pointers['Player']]
 # Create figure and axes
 fig, ax = plt.subplots(figsize=(6, 6), facecolor='lightblue')
@@ -33,13 +37,9 @@ fig, ax = plt.subplots(figsize=(6, 6), facecolor='lightblue')
 # Set background color of the plot area
 ax.set_facecolor('lightblue')  # This changes the background of the scatterplot
 
-# Create scatter plot
-ax.scatter(x=three_pointers["3PA"], y=three_pointers["3P%"], color=colors)
-ax.set_xlabel("3-Point Attempts")
-ax.set_ylabel("3-Point Percentage")
-# Show plot
-plt.show()
+# Convert to DataFrame
+df = stats.get_data_frames()[0]
 
+print(df.)
 
-
-
+player_inside_scoring = df['']
