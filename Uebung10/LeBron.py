@@ -3,7 +3,6 @@ import matplotlib.pyplot as plt
 import pandas as pd
 from matplotlib.pyplot import figure
 
-
 three_pointers = pd.read_excel("3pt.xlsx")
 three_point_insider = {
     'Giannis Antetokounmpo': 'red',
@@ -12,6 +11,11 @@ three_point_insider = {
     'Alpren Sengun': 'red'
 }
 three_point_shooters = {
+    'Giannis Antetokounmpo': 'red',
+    'Domantas Sabonis': 'red',
+    'Anthony Davis': 'red',
+    'Zion Williamson': 'green',
+    'Alpren Sengun': 'red',
     'Luke Kennard': 'green',
     'Malik Beasley': 'green',
     'CJ McCollum': 'green',
@@ -21,9 +25,9 @@ three_point_shooters = {
     'Sam Hauser': 'green',
     'Stephen Curry': 'green',
     'Paul George': 'green',
-    'Bojan Bogdanović' : 'green',
-    'Grayson Allen' : 'green',
-    'Simone Fontecchio' : 'green'
+    'Bojan Bogdanović': 'green',
+    'Grayson Allen': 'green',
+    'Simone Fontecchio': 'green'
 }
 
 colors = [three_point_shooters.get(player, 'white') for player in three_pointers['Player']]
@@ -39,7 +43,3 @@ ax.set_xlabel("3-Point Attempts")
 ax.set_ylabel("3-Point Percentage")
 # Show plot
 plt.show()
-
-
-
-
