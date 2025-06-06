@@ -44,7 +44,6 @@ def aufgabe_2_b(m):
         'y_f' : y_f
     })
     df = df.set_index('x')
-    plt.ylabel('y')
     df.plot(title='Aufgabe 2b)')
     plt.show()
 
